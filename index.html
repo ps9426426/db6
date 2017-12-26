@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" >
+	<meta name="format-detection"content="telphone=no,eamil=no">
+	<meta http-equiv="X-UA-Compatible"content="IE=Edge,chrome=1.0">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="box">
+		<section>
+			<div class="top">
+				<span>美团账号登录</span>
+				<span>手机验证登陆</span>
+			</div>
+			<div class="change">
+			</div>
+			<div class="main">
+				<p><input type="text" placeholder="账户名/手机号/Email" class="user"><span>输入正确</span></p>
+				<p><input type="text" placeholder="请输入您的密码" class="pwd"><span>输入正确</span></p>
+				<button class="btn">登陆</button>
+				<h3><a href="#">立即注册</a><a href="#">找回密码</a></h3>
+			</div>
+		</section>
+	</div>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script>
+		$(function(){
+			var reg=/^[a-z]{6,12}$/;
+			var reg1=/^1[34578]\d{9}$/;
+			var reg2=/^\w+@\w+\.(com|cn)/i;
+			var reg3=/^\d{6,12}$/;
+			$(".user").on("blur",function(){
+				var val=$(this).val();
+				if(val!=""){					
+					if(reg.test(val)||reg1.test(val)||reg2.test(val)){
+						$(".user").next().show();
+					}else{
+						$(".user").next().show();
+						$(".user").next().text("输入错误，重新输入");
+						$(".user").next().addClass('bg')
+					}
+				}else{
+					alert("请输入账户名/手机号/Email")
+				}
+			})
+			$(".pwd").on("blur",function(){
+				var val=$(this).val();
+				if(val!=""){					
+					if(reg3.test(val)){
+						$(".pwd").next().show();
+					}else{
+						$(".pwd").next().show();
+						$(".pwd").next().text("输入错误，重新输入");
+						$(".pwd").next().addClass('bg')
+					}
+				}else{
+					alert("请输入账户名/手机号/Email")
+				}
+			})
+			$(".btn").on("click",function(){
+				var val1=$(".user").next().text();
+				var val2=$(".pwd").next().text();
+				if(val1=="输入正确" && val2=="输入正确"){
+					alert("登陆成功")
+				}else{
+					alert("请验证您的用户名与密码")
+				}
+			})
+		})
+	</script>
+</body>
+</html>
